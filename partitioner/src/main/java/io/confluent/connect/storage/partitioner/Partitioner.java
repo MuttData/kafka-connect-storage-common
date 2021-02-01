@@ -52,4 +52,8 @@ public interface Partitioner<T> {
   String generatePartitionedPath(String topic, String encodedPartition);
 
   List<T> partitionFields();
+
+  default boolean shouldRotateOnTime(String encodedPartition, String currentEncodedPartition) {
+    return !encodedPartition.equals(currentEncodedPartition);
+  }
 }
